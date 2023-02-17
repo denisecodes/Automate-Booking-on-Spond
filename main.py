@@ -54,9 +54,3 @@ for badminton_date in badminton_dates:
         pass
 
 driver.quit()
-
-
-
-
-
-
