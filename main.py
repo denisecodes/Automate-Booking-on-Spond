@@ -29,6 +29,7 @@ print(two_weeks_from_today)
 
 #Get dates for badminton sessions
 spond_dates = driver.find_elements(by="css selector", value=".spondCardstyled__EventStartTime-sc-1adg5oi-22")
+#Retrieves text of badminton dates, storing it into a list
 badminton_dates = [spond_date.get_attribute('innerHTML') for spond_date in spond_dates]
 print(badminton_dates)
 
@@ -50,6 +51,10 @@ for badminton_date in badminton_dates:
                 accept_button.click()
                 time.sleep(5)
                 break
+            finally:
+                #Refresh the page
+                driver.refresh()
+                time.sleep(3)
     else:
         pass
 
