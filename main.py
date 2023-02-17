@@ -45,7 +45,7 @@ for badminton_date in badminton_dates:
             try:
                 accept_button = driver.find_element(by="name", value="accept-button")
             except NoSuchElementException:
-                pass
+                print("Accept button not found")
             else:
                 accept_button.click()
                 time.sleep(5)
