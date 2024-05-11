@@ -4,8 +4,10 @@ import os
 from selenium.common import NoSuchElementException
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.utils import ChromeType
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
+driver_path = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+driver = webdriver.Chrome(driver_path)
 
 spond_login = "https://spond.com/landing/login/"
 my_email = os.environ.get("MY_EMAIL")
