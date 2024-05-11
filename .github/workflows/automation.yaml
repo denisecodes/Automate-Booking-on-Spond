@@ -1,29 +1,30 @@
 name: Automate Spond Login and Booking
-
 on:
-  schedule:
-    - cron: '59 19 * * 0'
-  workflow_dispatch:
-
+    schedule:
+      - cron: '59 19 * * 0'
+    workflow_dispatch:
 jobs:
-  automate_script:
+  scrape:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Checking out repo
+        uses: actions/checkout@v3
+      - name: Setting up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: 
-            pip install -r requirements.txt
-            pip install --upgrade webdriver-manager
+          python-version: '3.9'
+      - name: Installing package list
+        run: apt list --installed    
+      - name: Removing previous chrome instances on runner 
+        run: sudo apt purge google-chrome-stable  
+        
+      - name: Installing all necessary packages
+        run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay
+      - name: Install xvfb
+        run: sudo apt-get install xvfb
 
       - name: Run script
         env:
-          MY_EMAIL: ${{ secrets.MY_EMAIL }}
-          MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
+            MY_EMAIL: ${{ secrets.MY_EMAIL }}
+            MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
         run: python main.py
