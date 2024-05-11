@@ -17,12 +17,13 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Download and Run Chrome Installation Script
-        run: |
-          curl -sL https://raw.githubusercontent.com/actions/runner-images/main/images/ubuntu/scripts/build/install-google-chrome.sh | sudo bash
+      - name: Installing package list
+        run: apt list --installed    
+      - name: Removing previous chrome instances on runner 
+        run: sudo apt purge google-chrome-stable  
 
-      - name: Installed package list
-        run: apt list --installed
+      - name: Install xvfb
+        run: sudo apt-get install xvfb
 
       - name: Install all necessary packages
         run: pip install -r requirements.txt
