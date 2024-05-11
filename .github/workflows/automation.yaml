@@ -2,7 +2,7 @@ name: Automate Spond Login and Booking
 
 on:
   schedule:
-    - cron: '59 19 * * 0'  # Runs at 19:59 every Sunday
+    - cron: '58 19 * * 0'  # Runs at 19:58 every Sunday
   workflow_dispatch:
 
 jobs:
