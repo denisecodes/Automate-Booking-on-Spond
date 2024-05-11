@@ -26,7 +26,9 @@ jobs:
         run: sudo apt-get install xvfb
 
       - name: Install all necessary packages
-        run: pip install selenium webdriver_manager
+        run: |
+          pip install -r requirements.txt
+          pip install chromedriver-autoinstaller 
 
       - name: Run script
         env:
