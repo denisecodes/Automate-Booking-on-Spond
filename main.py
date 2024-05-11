@@ -42,7 +42,6 @@ time.sleep(2)
 
 #Get today's date
 today = dt.datetime.today().date()
-# will need to change this to 7 days
 seven_days = dt.timedelta(days=7)
 one_week_from_today = (today + seven_days).strftime(f"%A, %-d %b at 11:00")
 print(one_week_from_today)
