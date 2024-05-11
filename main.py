@@ -3,12 +3,21 @@ import datetime as dt
 import os
 from selenium.common import NoSuchElementException
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.utils import ChromeType
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
-options = webdriver.ChromeOptions()
-options.binary_location = "/usr/bin/google-chrome"
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+
+chrome_options = Options()
+options = [
+    "--window-size=1920,1200"
+]
+for option in options:
+    chrome_options.add_argument(option)
+
+driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
 spond_login = "https://spond.com/landing/login/"
 my_email = os.environ.get("MY_EMAIL")
