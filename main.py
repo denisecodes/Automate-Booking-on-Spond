@@ -8,9 +8,29 @@ from selenium.common import NoSuchElementException
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
+chrome_options = webdriver.ChromeOptions()   
 options = webdriver.ChromeOptions()
+options = [
+  # Define window size here
+   "--window-size=1200,1200",
+    "--ignore-certificate-errors"
 
-driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    #"--headless",
+    #"--disable-gpu",
+    #"--window-size=1920,1200",
+    #"--ignore-certificate-errors",
+    #"--disable-extensions",
+    #"--no-sandbox",
+    #"--disable-dev-shm-usage",
+    #'--remote-debugging-port=9222'
+]
+
+for option in options:
+    chrome_options.add_argument(option)
+
+driver = webdriver.Chrome(ChromeDriverManager().install())
+
+driver = webdriver.Chrome(options = chrome_options)
 
 spond_login = "https://spond.com/landing/login/"
 my_email = os.environ.get("MY_EMAIL")
