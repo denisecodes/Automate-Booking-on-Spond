@@ -6,25 +6,31 @@ on:
   workflow_dispatch:
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v2
-        - name: Set up Python
-        uses: actions/setup-python@v2
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out repo
+        uses: actions/checkout@v3
+
+      - name: Setting up Python
+        uses: actions/setup-python@v4
         with:
-            python-version: 3.11 
-        - name: Install dependencies
-        run: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-    
-        - name: Install Chrome and ChromeDriver
+          python-version: '3.10'  
+
+      - name: Install Chrome and ChromeDriver
         uses: browser-actions/setup-chrome@v1.1
         with:
-            chrome-version: 'latest' 
-    
-        - name: Run Selenium tests
+          chrome-version: 'latest'  
+
+      - name: Install dependencies
         run: |
-            python -m webdriver_manager.chrome
-            python main.py 
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  
+
+      - name: Run script
+        env:
+          MY_EMAIL: ${{ secrets.MY_EMAIL }}
+          MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
+        run: |
+          python -m webdriver_manager.chrome
+          python main.py  
