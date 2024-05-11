@@ -3,11 +3,12 @@ import datetime as dt
 import os
 from selenium.common import NoSuchElementException
 from selenium import webdriver
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+options = webdriver.ChromeOptions()
+options.binary_location = "/usr/bin/google-chrome"
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 spond_login = "https://spond.com/landing/login/"
 my_email = os.environ.get("MY_EMAIL")
