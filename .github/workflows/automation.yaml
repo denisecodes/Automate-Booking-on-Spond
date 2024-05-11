@@ -3,6 +3,7 @@ name: Automate Spond Login and Booking
 on:
     schedule:
       - cron: '59 19 * * 0'  
+      workflow_dispatch:
 
 jobs:
   automate_script:
