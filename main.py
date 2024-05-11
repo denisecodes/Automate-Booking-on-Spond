@@ -1,11 +1,34 @@
-from selenium.common import NoSuchElementException
 import time
 import datetime as dt
 import os
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+import chromedriver_autoinstaller
+from selenium.common import NoSuchElementException
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
+chrome_options = webdriver.ChromeOptions()    
+# Add your options as needed    
+options = [
+  # Define window size here
+   "--window-size=1200,1200",
+    "--ignore-certificate-errors"
+ 
+    #"--headless",
+    #"--disable-gpu",
+    #"--window-size=1920,1200",
+    #"--ignore-certificate-errors",
+    #"--disable-extensions",
+    #"--no-sandbox",
+    #"--disable-dev-shm-usage",
+    #'--remote-debugging-port=9222'
+]
+
+for option in options:
+    chrome_options.add_argument(option)
+
+    
+driver = webdriver.Chrome(options = chrome_options)
 spond_login = "https://spond.com/landing/login/"
 my_email = os.environ.get("MY_EMAIL")
 my_password = os.environ.get("MY_PASSWORD")
