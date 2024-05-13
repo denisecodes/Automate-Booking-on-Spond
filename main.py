@@ -41,49 +41,42 @@ password_field = driver.find_element(By.NAME, "password")
 password_field.send_keys(my_password)
 submit = driver.find_element(By.CLASS_NAME, "spinner-button")
 submit.click()
+time.sleep(1)
 
-#Get today's date
+#Get date 7 days from today
 today = dt.datetime.today().date()
 seven_days = dt.timedelta(days=7)
 one_week_from_today = (today + seven_days).strftime(f"%A, %-d %b at 11:00")
 print(one_week_from_today)
-time.sleep(1)
 
 #Wait until badminton dates are loaded
 WebDriverWait(driver, 10).until(
     EC.presence_of_all_elements_located((By.XPATH, '//*[@id="event_card_start_time"]'))
 )
 
-#Get dates for badminton sessions
-spond_dates = driver.find_elements(By.XPATH, '//*[@id="event_card_start_time"]')
-#Retrieves text of badminton dates, storing it into a list
-badminton_dates = [spond_date.text for spond_date in spond_dates]
-print(badminton_dates)
-
-# Check if there is a session that is one week from today and book session
-for badminton_date in badminton_dates:
-    if one_week_from_today == badminton_date:
-        print("There is a session in exactly one week from today")
-        #Find an element by it's text value using xpath
-        #Click the date of the session one week from today
-        xpath_query = f"//*[@id='event_card_start_time' and contains(text(), '{badminton_date}')]"
-        date_button = driver.find_element(By.XPATH, xpath_query)
-        date_button.click()
-        time.sleep(1)
-        while True:
-            try:
-                accept_button = driver.find_element(By.NAME, "accept-button")
-            except NoSuchElementException:
-                print("Accept button not found")
-            else:
-                accept_button.click()
-                time.sleep(1)
-                break
-            finally:
-                #Refresh the page
-                driver.refresh()
-                time.sleep(1)
-    else:
-        pass
+#Check if there is a session one week from today
+xpath_query = f"//*[@id='event_card_start_time' and contains(text(), '{one_week_from_today}')]"
+try:
+    driver.find_element(By.XPATH, xpath_query)
+    print("There is a session one week from today")
+except NoSuchElementException:
+    print("There is no session one week from today")
+else:
+    date_button = driver.find_element(By.XPATH, xpath_query)
+    date_button.click()
+    time.sleep(2)
+    while True:
+        try:
+            accept_button = driver.find_element(By.NAME, "accept-button")
+        except NoSuchElementException:
+            print("Accept button not found")
+        else:
+            accept_button.click()
+            time.sleep(1)
+            break
+        finally:
+            #Refresh the page
+            driver.refresh()
+            time.sleep(1)
 
 driver.quit()
