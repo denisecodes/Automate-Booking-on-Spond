@@ -47,7 +47,7 @@ time.sleep(1)
 today = dt.datetime.today().date()
 seven_days = dt.timedelta(days=7)
 one_week_from_today = (today + seven_days).strftime(f"%A, %-d %b at 11:00")
-print(one_week_from_today)
+print(f"One week from today: {one_week_from_today}")
 
 #Wait until badminton dates are loaded
 WebDriverWait(driver, 10).until(
