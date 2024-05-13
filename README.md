@@ -13,7 +13,7 @@ After a few months of learning how to code, I decided to embark on a personal pr
 
 ### 🏃‍♀️ Automation
 
-To run the script weekly, I decided to use GitHub Actions. At first I found it difficult to find the right workflow to use in order to get the Chromedriver working but after some trial and error, I decided to use the workflow created by [jsoma](https://github.com/jsoma/selenium-github-actions) and adjust my <b>main.py</b> file.
+To run the script weekly, I decided to use GitHub Actions. At first I found it difficult to find the right workflow to use in order to get the Chromedriver working but after some trial and error, I decided to use the workflow created by [jsoma](https://github.com/jsoma/selenium-github-actions) and adjust my `main.py` file.
 
 ### 📖 Reflection
 
