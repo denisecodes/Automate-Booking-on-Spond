@@ -50,8 +50,8 @@ one_week_from_today = (today + seven_days).strftime(f"%A, %-d %b at 11:00")
 print(f"One week from today: {one_week_from_today}")
 
 #Wait until badminton dates are loaded
-WebDriverWait(driver, 10).until(
-    EC.presence_of_all_elements_located((By.XPATH, '//*[@id="event_card_start_time"]'))
+WebDriverWait(driver, 20).until(
+    EC.presence_of_all_elements_located((By.ID, 'event_card_start_time'))
 )
 
 #Check if there is a session one week from today
