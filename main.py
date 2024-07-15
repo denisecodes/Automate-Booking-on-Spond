@@ -76,6 +76,8 @@ else:
             break
         finally:
             #Refresh the page
+            driver.get(driver.current_url)
+            time.sleep(1)
             driver.refresh()
             time.sleep(1)
 
