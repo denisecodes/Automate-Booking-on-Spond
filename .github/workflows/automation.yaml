@@ -2,7 +2,7 @@ name: Automate Spond Login and Booking
 
 on:
   schedule:
-    - cron: '36 18 * * 0'  # Runs at 18:36 UTC every Sunday (with 20 mins delay in mind)
+    - cron: '45 18 * * 0'  # Runs at 18:36 UTC every Sunday (with 10 mins delay in mind)
   workflow_dispatch:
 
 jobs:
