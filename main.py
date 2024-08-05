@@ -76,10 +76,7 @@ else:
             time.sleep(1)
             break
         finally:
-            #Refresh the page
             driver.get(driver.current_url)
             time.sleep(2)
-            #driver.refresh()
-            #time.sleep(1)
 
 driver.quit()
