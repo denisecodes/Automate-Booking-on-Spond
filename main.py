@@ -21,7 +21,8 @@ options = [
     "--ignore-certificate-errors",
     "--disable-extensions",
     "--no-sandbox",
-    "--disable-dev-shm-usage"
+    "--disable-dev-shm-usage",
+    "log-level=3"
 ]
 for option in options:
     chrome_options.add_argument(option)
