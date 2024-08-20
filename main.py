@@ -21,8 +21,7 @@ options = [
     "--ignore-certificate-errors",
     "--disable-extensions",
     "--no-sandbox",
-    "--disable-dev-shm-usage",
-    "log-level=3"
+    "--disable-dev-shm-usage"
 ]
 for option in options:
     chrome_options.add_argument(option)
@@ -69,11 +68,12 @@ else:
     while True:
         try:
             accept_button = driver.find_element(By.NAME, "accept-button")
-            print("You have got spot!")
+            print("Looking for accept button")
         except NoSuchElementException:
             print("Accept button not found")
         else:
             accept_button.click()
+            print("You have got spot!")
             time.sleep(1)
             break
         finally:
