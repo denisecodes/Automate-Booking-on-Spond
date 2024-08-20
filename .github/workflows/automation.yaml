@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  get-a-spot-on-spond:
     runs-on: ubuntu-latest
     steps:
       - name: Check out this repo
