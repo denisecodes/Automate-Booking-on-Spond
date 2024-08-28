@@ -71,6 +71,7 @@ else:
         except NoSuchElementException:
             print("Accept button not found")
         else:
+            print("Accept button found")
             accept_button.click()
             print("You have got spot!")
             time.sleep(1)
