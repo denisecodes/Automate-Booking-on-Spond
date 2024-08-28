@@ -68,7 +68,6 @@ else:
     while True:
         try:
             accept_button = driver.find_element(By.NAME, "accept-button")
-            print("Looking for accept button")
         except NoSuchElementException:
             print("Accept button not found")
         else:
